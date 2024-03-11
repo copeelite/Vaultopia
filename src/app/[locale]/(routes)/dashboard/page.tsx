@@ -5,13 +5,25 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 
 
 import {cn as classNames} from '@/lib/utils'
-
+import Image from 'next/image'
 const Dashboard = () => {
   //const session = await auth()
 
   return (
     <div className='overflow-auto h-[100vh]'>
-       <h1>Dashboard</h1>
+       <div className='overflow-auto h-[90vh]'>
+            <div className='flex items-center justify-center'>
+                <h1 className='text-2xl font-bold'>Dashboard</h1>
+            </div>
+            <div>
+                <Image
+                    src="/dashboard.jpg"
+                    alt="safe"
+                    width={1500}
+                    height={3000}
+                />
+            </div>
+        </div>
 
       {/*<form>
       <div className="space-y-12">
