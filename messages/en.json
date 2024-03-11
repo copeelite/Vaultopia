@@ -1,0 +1,9 @@
+{
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, cn {🇨🇳 中文} en {🇺🇸 English} other {Unknown}}"
+  },
+  "Navigation": {
+    "OtherMunus": "Other Munus"
+  }
+  }

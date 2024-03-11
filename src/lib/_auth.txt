@@ -1,0 +1,124 @@
+import { NextAuthOptions} from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import { db } from "./db";
+import { compare } from "bcryptjs";
+import GoogleProvider from "next-auth/providers/google";
+import { nanoid } from 'nanoid'
+import { getSession } from "next-auth/react";
+import { Adapter } from "next-auth/adapters";
+const auth: NextAuthOptions = {
+  adapter: PrismaAdapter(db) as Adapter,
+  secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/signin",
+    // signOut: "/signout",
+  },
+  session: {
+    strategy: "jwt",
+  },
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "example@mail.com",
+        },
+        password: { label: "Password", type: "password"},
+      },
+      async authorize(credentials, req) {
+        // You need to provide your own logic here that takes the credentials
+        // submitted and returns either a object representing a user or value
+        // that is false/null if the credentials are invalid.
+        // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
+        // You can also use the `req` object to obtain additional parameters
+        // (i.e., the request IP address)
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+
+        const existingUser = await db.user.findUnique({
+          where: {
+            email: credentials.email,
+          },
+        });
+        if (!existingUser) {
+          return null;
+        }
+
+        if (existingUser.password)
+        {
+          const passwordMatch = await compare(
+            credentials.password,
+            existingUser.password
+          );
+          if (!passwordMatch) {
+            return null;
+          }
+        }
+        
+        return {
+          id: `${existingUser.id}`,
+          name: existingUser.username,
+          email: existingUser.email,
+        } as any;
+      },
+    }),
+  ],
+  callbacks: {
+    async session({token, session}) {
+      
+      if (token) {
+        session.user.id = token.id
+        session.user.name = token.name
+        session.user.email = token.email
+        session.user.image = token.picture
+        session.user.username = token.username // Fix: Add 'username' property to the type of session.user
+        session.user.role = token.role
+      }
+      //console.log(session, token)
+      return session;
+    },
+
+    async jwt({ token, user}) {
+      const dbUser = await db.user.findFirst({
+        where: {
+          email: token.email,
+        },
+      })
+
+      if (!dbUser) {
+        token.id = user!.id
+        return token
+      }
+
+      if (!dbUser.username) {
+        await db.user.update({
+          where: {
+            id: dbUser.id,
+          },
+          data: {
+            username: nanoid(10),
+          },
+        })
+      }
+
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        picture: dbUser.image,
+        username: dbUser.username,
+        role: dbUser.role,
+      }
+    }
+  },
+};
+
+export default auth;

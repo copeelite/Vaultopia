@@ -1,0 +1,145 @@
+[
+    {
+        "paymentId": 1,
+        "rentStartDate": "01/01/2023",
+        "rentEndDate": "01/31/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "01/01/2023",
+        "rentOwing": "$0",
+        "note": "Deposit",
+        "reminder": ""
+    },
+    {
+        "paymentId": 2,
+        "rentStartDate": "02/01/2023",
+        "rentEndDate": "02/28/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "02/01/2023",
+        "rentOwing": "$0",
+        "note": "EFT",
+        "reminder": ""
+    },
+    {
+        "paymentId": 3,
+        "rentStartDate": "03/01/2023",
+        "rentEndDate": "03/31/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "03/01/2023",
+        "rentOwing": "$0",
+        "note": "EFT",
+        "reminder": ""
+    },
+    {
+        "paymentId": 4,
+        "rentStartDate": "04/01/2023",
+        "rentEndDate": "04/30/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "04/01/2023",
+        "rentOwing": "$0",
+        "note": "EFT",
+        "reminder": ""
+    },
+    {
+        "paymentId": 5,
+        "rentStartDate": "05/01/2023",
+        "rentEndDate": "05/31/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "05/01/2023",
+        "rentOwing": "$0",
+        "note": "EFT",
+        "reminder": ""
+    },
+    {
+        "paymentId": 6,
+        "rentStartDate": "06/01/2023",
+        "rentEndDate": "06/30/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "06/01/2023",
+        "rentOwing": "$0",
+        "note": "EFT",
+        "reminder": ""
+    },
+    {
+        "paymentId": 7,
+        "rentStartDate": "07/01/2023",
+        "rentEndDate": "07/31/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "07/01/2023",
+        "rentOwing": "$0",
+        "note": "EFT",
+        "reminder": ""
+    },
+    {
+        "paymentId": 8,
+        "rentStartDate": "08/01/2023",
+        "rentEndDate": "08/31/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "08/01/2023",
+        "rentOwing": "$0",
+        "note": "EFT",
+        "reminder": "N1 rent increase to tenant"
+    },
+    {
+        "paymentId": 9,
+        "rentStartDate": "09/01/2023",
+        "rentEndDate": "09/30/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "09/01/2023",
+        "rentOwing": "$0",
+        "note": "Deposit",
+        "reminder": ""
+    },
+    {
+        "paymentId": 10,
+        "rentStartDate": "10/01/2023",
+        "rentEndDate": "10/31/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "10/01/2023",
+        "rentOwing": "$0",
+        "note": "Deposit",
+        "reminder": ""
+    },
+    {
+        "paymentId": 11,
+        "rentStartDate": "11/01/2023",
+        "rentEndDate": "11/30/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "11/01/2023",
+        "rentOwing": "$0",
+        "note": "Deposit",
+        "reminder": ""
+    },
+    {
+        "paymentId": 12,
+        "rentStartDate": "12/01/2023",
+        "rentEndDate": "12/31/2023",
+        "rentTotal": "$2600",
+        "rentPaid": "$2600",
+        "paidDate": "12/01/2023",
+        "rentOwing": "$0",
+        "note": "EFT",
+        "reminder": "Last rent deposit was paid"
+    },
+    {
+        "paymentId": 13,
+        "rentStartDate": "01/01/2024",
+        "rentEndDate": "01/31/2024",
+        "rentTotal": "$2665",
+        "rentPaid": "$2600",
+        "paidDate": "01/01/2024",
+        "rentOwing": "$65",
+        "note": "EFT",
+        "reminder": "Non-sufficient funds"
+    }
+]

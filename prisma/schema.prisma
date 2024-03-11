@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum UserRole {
+  ADMIN
+  BASIC
+}
+
+model User {
+  id            String       @id @default(cuid())
+  name          String?
+  username      String?      @unique
+  password      String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  email         String?      @unique
+  emailVerified DateTime?
+  image         String?
+  role          UserRole     @default(BASIC)
+  accounts      Account[]
+  sessions      Session[]
+  userDetails   UserDetails?
+}
+
+model UserDetails {
+  id         String     @id @default(uuid())
+  userId     String     @unique
+  user       User       @relation(fields: [userId], references: [id])
+  phone      String?
+  properties Property[]
+}
+
+model Property {
+  id           Int             @id @default(autoincrement())
+  address      String          @unique
+  userDetailId String // This should reference UserDetail ID
+  landlord     UserDetails     @relation(fields: [userDetailId], references: [id])
+  leases       LeaseContract[]
+}
+
+model LeaseContract {
+  id            String        @id @default(uuid())
+  propertyId    Int
+  property      Property      @relation(fields: [propertyId], references: [id])
+  startDate     DateTime      @map("start_date")
+  endDate       DateTime      @map("end_date")
+  deposit       Decimal
+  depositForKey Decimal       @map("deposit_for_key")
+  unpaidMonths  Int[]         @default([])
+  monthlyRent   Decimal       @map("monthly_rent")
+  leaseDetail   LeaseDetail?
+  tenants       Tenant[]
+  leaseHistory  LeaseHistory?
+}
+
+model LeaseHistory {
+  id      String               @id @default(uuid())
+  leaseId String               @unique
+  lease   LeaseContract        @relation(fields: [leaseId], references: [id])
+  records LeaseHistoryRecord[]
+}
+
+model LeaseHistoryRecord {
+  id           String       @id @default(uuid())
+  historyId    String
+  date         DateTime
+  amountPaid   Decimal
+  description  String?
+  leaseHistory LeaseHistory @relation(fields: [historyId], references: [id])
+}
+
+model Tenant {
+  id      String        @id @default(cuid())
+  leaseId String
+  name    String
+  email   String?       @unique
+  phone   String?
+  lease   LeaseContract @relation(fields: [leaseId], references: [id])
+}
+
+model LeaseDetail {
+  id              String            @id @default(uuid())
+  leaseContractId String            @unique
+  leaseContract   LeaseContract     @relation(fields: [leaseContractId], references: [id])
+  items           LeaseDetailItem[]
+  // Include any other detailed elements here
+}
+
+model LeaseDetailItem {
+  id            String      @id @default(uuid())
+  leaseDetailId String
+  leaseDetail   LeaseDetail @relation(fields: [leaseDetailId], references: [id])
+  key           String // A key to identify the detail (e.g., "fixedTermLease", "standardLeaseSigned")
+  type          String // Type of detail ("toggle", "radio", "multiple-choice", "input")
+  value         String // A JSON string to store the value(s); use parsing to handle different structures
+  description   String? // Optional description for the detail
+}
+
+
+
+
+
+model LeaseDetailTemplate {
+  id          String                   @id @default(uuid())
+  name        String                   // Name of the template, e.g., "Standard Residential Lease"
+  description String?                  // Description of what the template is for
+  items       LeaseDetailTemplateItem[]
+}
+
+model LeaseDetailTemplateItem {
+  id                  String              @id @default(uuid())
+  leaseDetailTemplateId String
+  leaseDetailTemplate LeaseDetailTemplate @relation(fields: [leaseDetailTemplateId], references: [id], onDelete: Cascade)
+  key                 String              // A key to identify the detail
+  type                String              // Type of detail ("toggle", "radio", "multiple-choice", "input")
+  options             String              // JSON string for options
+  defaultValue        String?             // JSON string for default value(s)
+}

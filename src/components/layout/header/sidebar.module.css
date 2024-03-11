@@ -1,0 +1,10 @@
+.sidebar {
+    width: 250px; /* Adjust the width as needed */
+    overflow-y: auto; /* Enables vertical scrolling for the sidebar */
+    height: 100vh; /* Ensures the sidebar fills the viewport height */
+  }
+
+  .container {
+    display: flex;
+    height: 100vh; /* Ensures the container fills the entire viewport height */
+  }
