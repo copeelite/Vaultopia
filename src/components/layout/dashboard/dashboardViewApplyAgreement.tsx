@@ -194,7 +194,7 @@ const DashboardView = () => {
                 <div className="grid grid-cols-1 gap-x-6 sm:grid-cols-8 lg:space-y-0 mt-5">
 
                 <div className="sm:col-span-2">
-                        <label htmlFor="street-address" className="block text-sm font-medium  text-gray-900">
+                        <label htmlFor="street-address" className="block text-sm font-medium  ">
                             Street address
                         </label>
                         <div className="mt-2">
@@ -203,7 +203,7 @@ const DashboardView = () => {
                                 name="street-address"
                                 id="street-address"
                                 autoComplete="street-address"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
                         </div>
                     </div>

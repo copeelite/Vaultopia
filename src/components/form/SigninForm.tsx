@@ -36,8 +36,8 @@ export default function SigninForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'w@w.ww',
+      password: '123123',
     },
   });
 
@@ -108,8 +108,10 @@ export default function SigninForm() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input placeholder='mail@example.com' {...field} />
+                          <FormControl >
+                            <Input 
+                            //placeholder='mail@example.com'
+                             {...field} />
                           </FormControl>
                           <div className={`h-5`}>
                             <FormMessage />
@@ -130,7 +132,7 @@ export default function SigninForm() {
                           <FormControl>
                             <Input
                               type='password'
-                              placeholder='Enter your password'
+                              //placeholder='Enter your password'
                               {...field}
                             />
                           </FormControl>
