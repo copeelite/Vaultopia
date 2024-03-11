@@ -18,6 +18,7 @@ import { Wrench } from 'lucide-react';
 import { ManagementSystem } from '@/components/layout/dashboard/PropertyListTypes'; // Adjust the import path as necessary
 import { propertyList } from '@/components/layout/dashboard/PropertyList'; // Import your mock data
 import { useCurentRole } from '@/hooks/auth/use-current-role'
+import { GraduationCap } from 'lucide-react';
 
 
 
@@ -77,13 +78,13 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
         current: false,
 
     },
-    // {
-    //     name: 'Utility',
-    //     href: '/utility',
-    //     icon: Wrench,
-    //     current: false,
+    {
+        name: 'Education',
+        href: '/education',
+        icon: GraduationCap,
+        current: false,
 
-    // },
+    },
     {
         name: 'Settings',
         href: '/settings',
