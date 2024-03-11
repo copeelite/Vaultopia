@@ -16,8 +16,9 @@ const page = async () => {
   const leaseContractTemplates = await fetchLeaseContractTemplate()
   return (
     <div className="overflow-auto max-h-screen">
-      {/* <LeaseTemplateList/> */}
+      <LeaseTemplateList/>
       {/* <LeaseTemplateForm /> */}
+
       <MaintenanceClient data={maintenanceData} property={property} />
 
     </div>
