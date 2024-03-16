@@ -37,20 +37,25 @@ import { UserRoundCog } from 'lucide-react';
 import { useCurentRole } from '@/hooks/auth/use-current-role'
 import { MenuItemAdmin } from '@/components/layout/header/admin/menuItemAdmin';
 import { Skeleton } from '@/components/ui/skeleton';
-// const user = {
-//   name: 'Tom Cook',
-//   email: 'tom@example.com',
-//   imageUrl:
-//     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-// }
-// const navigation = [
-//   { name: 'Dashboard', href: '#', current: true },
-//   { name: 'Rental Property', href: '#', current: true },
-//   { name: 'Notice', href: '#', current: false },
-//   { name: 'Litigation', href: '#', current: false },
-//   { name: 'Maintenance', href: '#', current: false },
-//   { name: 'Screening Service', href: '#', current: false },
-// ]
+
+
+import { Accessibility } from 'lucide-react';
+import { Ear } from 'lucide-react';
+import { EyeOff } from 'lucide-react';
+import { HandHelping } from 'lucide-react';
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
+
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuItem
+} from "@/components/ui/dropdown-menu"
+
+
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   // { name: 'Settings', href: '#' },
@@ -88,6 +93,7 @@ export default function Navbar() {
     current: false,
     href: '/admin',
   };
+  const [position, setPosition] = useState("")
 
   return (
     <Disclosure as="header" className="shadow">
@@ -107,7 +113,7 @@ export default function Navbar() {
                 </div>
               </div>
               {/* Make here responsive */}
-              <div className="relative z-0 lg:flex hidden flex-1 items-center justify-center px-2 sm:absolute sm:inset-0  ">
+              <div className="relative z-0 lg:flex hidden flex-1 items-center justify-center px-2 sm:absolute sm:inset-0">
                 <div className="w-full sm:max-w-xs">
                   {/* <label htmlFor="search" className="sr-only">
                     Search
@@ -129,13 +135,6 @@ export default function Navbar() {
 
 
                 {/* <h1 className='underline mx-2 text-indigo-500'>{t('OtherMunus')}</h1> */}
-                {/* <button
-                  type="button"
-                  className="flex-shrink-0 rounded-full  p-1  hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <Bell className="h-6 w-6" aria-hidden="true" />
-                </button> */}
 
 
                 {/* <button
@@ -143,25 +142,33 @@ export default function Navbar() {
                   className="flex-shrink-0 rounded-full  p-1  hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   <span className="sr-only">View notifications</span>
-                  <Gift className="h-6 w-6" aria-hidden="true" />
-                </button> */}
-                {/* <button
+                  <EyeOff className="h-6 w-6" aria-hidden="true" />
+                </button>
+                <button
                   type="button"
                   className="flex-shrink-0 rounded-full  p-1  hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   <span className="sr-only">View notifications</span>
-                  <CopyCheck className="h-6 w-6" aria-hidden="true" />
-                </button> */}
+                  <Ear className="h-6 w-6" aria-hidden="true" />
+                </button>
 
 
-                {/* <button
+
+                <button
                   type="button"
                   className="flex-shrink-0 rounded-full  p-1  hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   <span className="sr-only">View notifications</span>
-                  <FolderClosed className="h-6 w-6" aria-hidden="true" />
+                  <HandHelping className="h-6 w-6" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  className="flex-shrink-0 rounded-full  p-1  hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  <span className="sr-only">View notifications</span>
+                  <Accessibility className="h-6 w-6" aria-hidden="true" />
                 </button> */}
-                
+
               </div>
 
 
@@ -183,101 +190,156 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
 
-              {status == "loading" ? <Skeleton className='h-15 w-[10%]' /> : 
-              <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center ">
-                {/* Profile dropdown */}
-                <div>
-                  <LocaleSwitcher />
-                </div>
-                <ThemeSwitcher />
-                <Menu as="div" className="relative ml-4 flex-shrink-0">
+              {status == "loading" ? <Skeleton className='h-15 w-[10%]' /> :
+                <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center ">
+                  {/* Profile dropdown */}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      {/* <Button variant="ghost" className="h-8 w-8 p-0"> */}
+                      <div className="hover:bg-slate-800 dark:hover:bg-white p-1 text-orange-500 text-xl font-bold">
+                        <span className="sr-only">Open menu</span>
+                        <h1>Accessiblity</h1>
+                      </div>
+                      {/* </Button> */}
+                    </DropdownMenuTrigger>
 
+                    <DropdownMenuSeparator />
+                    <DropdownMenuContent align="end">
+                      {/* <DropdownMenuLabel>Actions</DropdownMenuLabel> */}
+                      <DropdownMenuItem
+                      >
+                        <button
+                          type="button"
+                          className="flex-shrink-0 rounded-full  p-1  hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                          <span className="sr-only">View notifications</span>
+                          <EyeOff className="h-6 w-6" aria-hidden="true" />
+                        </button>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+
+                      >
+                        <button
+                          type="button"
+                          className="flex-shrink-0 rounded-full  p-1  hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                          <span className="sr-only">View notifications</span>
+                          <Ear className="h-6 w-6" aria-hidden="true" />
+                        </button>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                      >
+                        <button
+                          type="button"
+                          className="flex-shrink-0 rounded-full  p-1  hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                          <span className="sr-only">View notifications</span>
+                          <HandHelping className="h-6 w-6" aria-hidden="true" />
+                        </button>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <button
+                          type="button"
+                          className="flex-shrink-0 rounded-full  p-1  hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                          <span className="sr-only">View notifications</span>
+                          <Accessibility className="h-6 w-6" aria-hidden="true" />
+                        </button>More Assistant
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                   <div>
-                    
-                    {
-                      status == "unauthenticated" &&
-                      <Link
-                        href='/signin'
-                        className="flex items-center   bg-yellow-50 dark:bg-black p-2 border-2 border-black dark:border-white hover:bg-indigo-400 dark:hover:bg-indigo-400">
-                        Login
-                      </Link>
-                    }
-                    {
-                      status == "authenticated" &&
-                      <Menu.Button className="flex rounded-full  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                        <span className="sr-only">Open user menu</span>
-                        {session?.user?.image ?
-                          (
-                            <div className='relative h-10 w-10'>
-                              <Image
-                                src={session.user.image}
-                                alt={session.user.name ?? ''}
-                                className='inline-block rounded-full'
-                                fill
-                              />
-                            </div>
-                          ) : (
-                            <span className='inline-block h-8 w-8 overflow-hidden rounded-full bg-stone-100'>
-                              <svg
-                                className='h-full w-full text-stone-300'
-                                fill='currentColor'
-                                viewBox='0 0 24 24'
-                              >
-                                <path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
-                              </svg>
-                            </span>
-                          )}
-                      </Menu.Button>
-                    }
+                    <LocaleSwitcher />
                   </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-white dark:bg-slate-300">
-                      {userNavigation.map((item) => (
-                        <Menu.Item key={item.name}>
+                  <ThemeSwitcher />
+                  <Menu as="div" className="relative ml-4 flex-shrink-0">
+
+                    <div>
+
+                      {
+                        status == "unauthenticated" &&
+                        <Link
+                          href='/signin'
+                          className="flex items-center   bg-yellow-50 dark:bg-black p-2 border-2 border-black dark:border-white hover:bg-indigo-400 dark:hover:bg-indigo-400">
+                          Login
+                        </Link>
+                      }
+                      {
+                        status == "authenticated" &&
+                        <Menu.Button className="flex rounded-full  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                          <span className="sr-only">Open user menu</span>
+                          {session?.user?.image ?
+                            (
+                              <div className='relative h-10 w-10'>
+                                <Image
+                                  src={session.user.image}
+                                  alt={session.user.name ?? ''}
+                                  className='inline-block rounded-full'
+                                  fill
+                                />
+                              </div>
+                            ) : (
+                              <span className='inline-block h-8 w-8 overflow-hidden rounded-full bg-stone-100'>
+                                <svg
+                                  className='h-full w-full text-stone-300'
+                                  fill='currentColor'
+                                  viewBox='0 0 24 24'
+                                >
+                                  <path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
+                                </svg>
+                              </span>
+                            )}
+                        </Menu.Button>
+                      }
+                    </div>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-white dark:bg-slate-300">
+                        {userNavigation.map((item) => (
+                          <Menu.Item key={item.name}>
+                            {({ active }) => (
+                              <Link
+                                href={item.href}
+                                className={classNames(
+                                  active ? 'bg-gray-100' : '',
+                                  'block px-4 py-2 text-sm text-black dark:text-black'
+                                )}
+                              >
+                                {item.name}
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        ))}
+
+                        <Menu.Item>
                           {({ active }) => (
-                            <Link
-                              href={item.href}
+                            <button
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-black dark:text-black'
+                                'flex w-full px-4 py-2 text-sm text-black dark:text-black'
                               )}
+                              // onClick={() => signOut({
+                              //   callbackUrl: `${window.location.origin}/signin`,
+                              // })}
+                              onClick={() => signOut()}
                             >
-                              {item.name}
-                            </Link>
+                              <LogOut className='mr-3 h-5 w-5' aria-hidden="true" />
+                              Sign Out
+                            </button>
                           )}
                         </Menu.Item>
-                      ))}
 
-                      <Menu.Item>
-                        {({ active }) => (
-                          <button
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'flex w-full px-4 py-2 text-sm text-black dark:text-black'
-                            )}
-                            // onClick={() => signOut({
-                            //   callbackUrl: `${window.location.origin}/signin`,
-                            // })}
-                            onClick={() => signOut()}
-                          >
-                            <LogOut className='mr-3 h-5 w-5' aria-hidden="true" />
-                            Sign Out
-                          </button>
-                        )}
-                      </Menu.Item>
-
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
-              </div>
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
+                </div>
               }
             </div>
 
@@ -439,7 +501,9 @@ export default function Navbar() {
                   </>
 
                 }
+                
                 <div className='mx-5 flex flex-row justify-between'>
+                  
                   <ThemeSwitcher />
                   <LocaleSwitcherMobile />
                 </div>

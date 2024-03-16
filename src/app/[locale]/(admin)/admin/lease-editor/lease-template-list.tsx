@@ -48,11 +48,16 @@ const LeaseTemplateList = () => {
               >
                 New Maintenance
               </DropdownMenuItem>
-              {/* <DropdownMenuItem
+              <DropdownMenuItem
               //onClick={() => router.push(`/dashboard/${params.storeId}/billboards/${data.id}`)}
               >
-                New 
-              </DropdownMenuItem> */}
+                Add MoveIn  
+              </DropdownMenuItem>
+              <DropdownMenuItem
+              //onClick={() => router.push(`/dashboard/${params.storeId}/billboards/${data.id}`)}
+              >
+                Add MoveOut  
+              </DropdownMenuItem>
 
             </DropdownMenuContent>
           </DropdownMenu>

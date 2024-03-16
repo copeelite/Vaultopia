@@ -2,28 +2,51 @@
 
 import { useState } from 'react'
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { AspectRatio } from "@/components/ui/aspect-ratio"
 
-
-import {cn as classNames} from '@/lib/utils'
+import { cn as classNames } from '@/lib/utils'
 import Image from 'next/image'
 const Dashboard = () => {
   //const session = await auth()
 
   return (
     <div className='overflow-auto h-[100vh]'>
-       <div className='overflow-auto h-[90vh]'>
-            <div className='flex items-center justify-center'>
-                <h1 className='text-2xl font-bold'>Dashboard</h1>
-            </div>
-            <div>
-                <Image
-                    src="/dashboard.jpg"
-                    alt="safe"
-                    width={1500}
-                    height={3000}
-                />
-            </div>
+
+      <div className='overflow-auto h-[90vh]'>
+
+        <div className='flex items-center justify-center'>
+          <h1 className='flex text-2xl font-bold text-center'>Advertisement</h1>
         </div>
+        <div className='grid grid-cols-3'>
+
+          <AspectRatio ratio={16 / 9} >
+            <Image src="/ad.png" alt="Move In" fill />
+
+          </AspectRatio>
+          <AspectRatio ratio={16 / 9} >
+            <Image src="/ad.png" alt="Move In" fill />
+
+          </AspectRatio>
+          <AspectRatio ratio={16 / 9} >
+            <Image src="/ad.png" alt="Move In" fill />
+
+          </AspectRatio>
+
+        </div>
+
+
+        <div className='flex items-center justify-center'>
+          <h1 className='text-2xl font-bold'>Dashboard</h1>
+        </div>
+        <div>
+          <Image
+            src="/dashboard.jpg"
+            alt="safe"
+            width={1500}
+            height={3000}
+          />
+        </div>
+      </div>
 
       {/*<form>
       <div className="space-y-12">

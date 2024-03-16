@@ -27,6 +27,7 @@ import { Save, Clock, MapPin } from 'lucide-react';
 import { DatePicker } from './datePicker';
 import Questionnaire from './dashboardQuestionnaire';
 import DashboardCard from './dashboardCardForShowFiles'
+
 import { useParams, useRouter } from "next/navigation";
 import { Property, Landlord } from '@/components/layout/dashboard/PropertyListTypes'; // Ensure these are correctly imported
 import { FileDown } from 'lucide-react';
@@ -46,6 +47,7 @@ const formSchema = z.object({
     phoneNumbers: z.string().min(10),
 })
 import DashboardMaintainence from './dashboardMaintainence'
+import DashboardPayment from './dashboardPayment'
 import { redirect } from 'next/dist/server/api-utils'
 import { Separator } from '@/components/ui/separator';
 import {
@@ -243,7 +245,7 @@ const DashboardView: React.FC<DashboardViewProps> = ({ property, landlord }) => 
                             </div>
                             <div>
                                 <Button variant="dashboard"
-                                    className='bg-orange-400 text-white hover:bg-orange-500 dark:hover:bg-orange-500 dark:bg-orange-400'
+                                    className='bg-orange-300 text-white hover:bg-orange-500 dark:hover:bg-orange-500 dark:bg-orange-400'
                                     onClick={() => router.push(`/rental-property/${property.id}/rent-ledger`)}
                                 >
                                     Go to Rent Ledger
@@ -266,6 +268,8 @@ const DashboardView: React.FC<DashboardViewProps> = ({ property, landlord }) => 
             <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
                 <DashboardCard />
                 <DashboardMaintainence />
+                <DashboardPayment />
+
             </div>
 
         </div>
