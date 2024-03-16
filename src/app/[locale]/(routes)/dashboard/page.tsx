@@ -15,9 +15,9 @@ const Dashboard = () => {
       <div className='overflow-auto h-[90vh]'>
 
         <div className='flex items-center justify-center'>
-          <h1 className='flex text-2xl font-bold text-center'>Advertisement</h1>
+          {/* <h1 className='flex text-2xl font-bold text-center'>Advertisement</h1> */}
         </div>
-        <div className='grid grid-cols-3'>
+        <div className='grid grid-cols-3 mx-4'>
 
           <AspectRatio ratio={16 / 9} >
             <Image src="/ad.png" alt="Move In" fill />
@@ -36,9 +36,9 @@ const Dashboard = () => {
 
 
         <div className='flex items-center justify-center'>
-          <h1 className='text-2xl font-bold'>Dashboard</h1>
+          {/* <h1 className='text-2xl font-bold'>Dashboard</h1> */}
         </div>
-        <div>
+        <div className='mt-2'>
           <Image
             src="/dashboard.jpg"
             alt="safe"
