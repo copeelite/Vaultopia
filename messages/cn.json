@@ -2,9 +2,10 @@
     
     "LocaleSwitcher": {
         "label": "改变语言",
-        "locale": "{locale, select, cn {🇨🇳 中文} en {🇺🇸 English} other {Unknown}}"
+        "locale": "{locale, select, cn {🇫🇷 Français} en {🇺🇸 English} other {Unknown}}"
       },
       "Navigation": {
         "OtherMunus": "其他菜单"
       }
 }
+

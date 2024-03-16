@@ -26,10 +26,10 @@ import Image from 'next/image'
 const page = async () => {
   const leaseContractTemplates = await fetchLeaseContractTemplate()
   return (
-    <div className="overflow-auto max-h-screen">
+    <div className="overflow-auto h-[90vh]">
       <LeaseTemplateList />
       <MaintenanceClient data={maintenanceData} property={property} />
-      <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 justify-center'>
+      <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 w-full'>
         <div className='col-2'>
           <Card className="w-[400px] pb-5">
             <div className="flex flex-col  items-center justify-between sm:flex-nowrap p-4">
@@ -64,8 +64,26 @@ const page = async () => {
 
           </Card>
         </div>
-      </div>
 
+        
+      </div>
+      
+      <div className='grid grid-cols-3 w-full mt-5'>
+
+<AspectRatio ratio={16 / 9} >
+  <Image src="/ad.png" alt="Move In" fill />
+
+</AspectRatio>
+<AspectRatio ratio={16 / 9} >
+  <Image src="/ad.png" alt="Move In" fill />
+
+</AspectRatio>
+<AspectRatio ratio={16 / 9} >
+  <Image src="/ad.png" alt="Move In" fill />
+
+</AspectRatio>
+
+</div>
     </div>
   )
 }

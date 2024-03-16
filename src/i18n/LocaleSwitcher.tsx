@@ -15,6 +15,9 @@ export default function LocaleSwitcher() {
             {t('locale', { locale: cur })}
           </option>
         ))}
+        <option className="text-dark">
+            🇨🇳 中文 
+          </option>
       </LocaleSwitcherSelect>
     </div>
   );
