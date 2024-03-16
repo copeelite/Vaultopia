@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useCallback } from 'react'
 import LeaseTemplateList from '@/app/[locale]/(admin)/admin/lease-editor/lease-template-list'
 import LeaseTemplateForm from '@/app/[locale]/(admin)/admin/lease-editor/lease-template-form'
@@ -23,11 +24,16 @@ import {
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
+import { VolumeIcon } from 'lucide-react'; // Import the specific icon you want to use
+
 const page = async () => {
-  const leaseContractTemplates = await fetchLeaseContractTemplate()
+  //const leaseContractTemplates = await fetchLeaseContractTemplate()
+    
   return (
     <div className="overflow-auto h-[90vh] w-full">
+      
       <LeaseTemplateList />
+     
       <MaintenanceClient data={maintenanceData} property={property} />
       <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 w-full'>
         <div className='col-2'>
