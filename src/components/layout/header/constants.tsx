@@ -45,7 +45,7 @@ export const SIDENAV_ITEMS: SideNavItem[] = [
 
     },
     {
-        name: 'Star New Agreement',
+        name: 'Start New Agreement',
         icon: Scale,
         current: false,
         href: '/start-agreement',
